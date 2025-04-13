@@ -6,7 +6,7 @@ const { title } = require('process')
 
 class DeviceController{
 
-    async create(req, res) {
+    async create(req, res, next) {
         try {
             const {name, price, brandId, typeId, info} = req.body
             const {img} = req.files
@@ -69,6 +69,21 @@ class DeviceController{
         },
     )
     return res.json(device)
+    }
+
+    async delete(req, res, next){
+        try {
+            const {id} = req.params
+            const deleted = await Device.destroy({ where: { id } })
+            if (!deleted){
+                return next(ApiError.internal('Товар с таким id не существует'))
+            }
+
+            return res.json({message: `Товар с id ${id} удален`})
+
+        } catch (e) {
+            next(ApiError.badRequest(e.message))
+        }
     }
 }
 
