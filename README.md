@@ -1,6 +1,7 @@
 # yt_lesson
 My first JS project done following this video: https://www.youtube.com/watch?v=H2GCkRF9eko
 
+
     client // Клиентская часть. Все, что относится к фронту
     server // Серверная часть. Все, что относится к беку
 
