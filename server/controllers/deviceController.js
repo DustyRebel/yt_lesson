@@ -74,8 +74,11 @@ class DeviceController{
     async delete(req, res, next){
         try {
             const {id} = req.params
+            //const {deviceId} = req.params
+            //const deletedInfo = await DeviceInfo.destroy({ where: {deviceId} })
+            await DeviceInfo.destroy({ where: { deviceId: id } });
             const deleted = await Device.destroy({ where: { id } })
-            if (!deleted){
+            if (!deleted){ //if (!deleted || deletedInfo){
                 return next(ApiError.internal('Товар с таким id не существует'))
             }
 

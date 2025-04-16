@@ -38,3 +38,8 @@ export const fetchOneDevice = async (id) => {
     const {data} = await $host.get('api/device/' + id)
     return data
 }
+
+export const deleteDevices = async (id) => {
+    const { data } = await $authHost.delete(`api/device${id}`);
+    return data
+}
